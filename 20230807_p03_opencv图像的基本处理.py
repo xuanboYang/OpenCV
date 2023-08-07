@@ -183,3 +183,53 @@ cv.imshow('dst2', dst2)
 cv.waitKey(0)
 cv.destroyAllWindows()
 
+# 90、180、270度旋转
+# 顺时针旋转90度
+dst1 = cv.rotate(img, rotateCode=cv.ROTATE_90_CLOCKWISE)
+# 旋转180度
+dst2 = cv.rotate(img, rotateCode=cv.ROTATE_180)
+# 逆时针旋转90度
+dst3 = cv.rotate(img, rotateCode=cv.ROTATE_90_COUNTERCLOCKWISE)
+print(dst.shape)
+# 图像可视化
+cv.imshow('img', img)
+cv.imshow('dst1', dst1)
+cv.imshow('dst2', dst2)
+cv.imshow('dst3', dst3)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+# 水平或者垂直翻转
+dst0 = cv.flip(img, 0)  # 上下翻转
+dst1 = cv.flip(img, 1)  # 左右翻转
+print(dst.shape)
+# 图像可视化
+cv.imshow('img', img)
+cv.imshow('dst0', dst0)
+cv.imshow('dst1', dst1)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+img = np.array(range(25)).reshape((5, 5))  # [H,W]
+print(img)
+print(cv.flip(img, 1))
+print(img[:, ::-1])
+
+# 图像旋转变成水平一点
+img = cv.imread("car3_plat.jpg")
+h, w, _ = img.shape
+
+M = cv.getRotationMatrix2D(center=(0, 0), angle=20, scale=1)
+dst = cv.warpAffine(img, M, (w + 30, w // 2), borderValue=[0, 0, 0])
+
+cv.imshow('img', img)
+cv.imshow('dst', dst)
+cv.waitKey(0)
+cv.destroyAllWindows()
+
+cv.imwrite('car3_plat2.png', dst)
+
+"""
+仿射变换
+    在仿射变换中，原图中是平行的元素在新的图像中也是平行的元素；可以任意的给定三个点来构建
+"""
