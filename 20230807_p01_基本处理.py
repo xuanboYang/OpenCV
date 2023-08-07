@@ -61,3 +61,34 @@ cv.destroyWindow('image_xiaoren')
 # 图像保存
 # 第一个参数是图像名称，第二个参数就是图像对象
 cv.imwrite('datas/yxb_t1.png', xiaorenImg)
+
+# # 根据不同的输入进行图像的操作
+# cv.imshow('image', img)
+# # 等待键盘的输入（键盘上各个键对应ASCII码， http://ascii.911cha.com/）
+# k = cv.waitKey(0) & 0xFF
+#
+# if k == 27:
+#     print(k)
+#     # 当输入的是ESC退出键的时候
+#     cv.destroyAllWindows()
+# else:
+#     # 当输入的是其他键的时候
+#     cv.imwrite('t2.png', img)
+#     cv.destroyAllWindows()
+
+# 读取图像将图像转换为Matplotlib可视化
+# NOTE: 如果需要可视化图像，需要注意：OpenCV中是BGR图像，而Matplotlib中是RGB的图像。
+yxb_t1_img = cv.imread("datas/yxb_t1.png", cv.IMREAD_GRAYSCALE)
+print(f"type(yxb_t1_img): {type(yxb_t1_img)}, yxb_t1_img.shape: {yxb_t1_img.shape}")
+plt.imshow(yxb_t1_img, cmap="gray")
+plt.show()
+# 读取图像将图像转换为Matplotlib可视化
+# NOTE: 如果需要可视化图像，需要注意：OpenCV中是BGR图像，而Matplotlib中是RGB的图像。
+xiaorenImg2 = cv.imread("datas/xiaoren.png", 1)
+xiaorenImg2_0 = np.zeros(xiaorenImg2.shape, dtype=xiaorenImg2.dtype)
+xiaorenImg2_0[:, :, 0] = xiaorenImg2[:, :, 2]
+xiaorenImg2_0[:, :, 1] = xiaorenImg2[:, :, 1]
+xiaorenImg2_0[:, :, 2] = xiaorenImg2[:, :, 0]
+plt.imshow(xiaorenImg2_0)
+plt.show()
+
